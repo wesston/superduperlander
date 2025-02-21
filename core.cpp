@@ -1,8 +1,6 @@
 
 #include <math.h>
-#include <EasyStringStream.h>
-#include <stdlib.h>
-#include <floatToString.h>
+
 struct Accel3 {
 float x;
 float y;
@@ -17,13 +15,8 @@ return (abs(Acceleration.x) + abs(Acceleration.y) + abs(Acceleration.z))/3;
 }
 
 String AccelDataReturn(Accel3 Acceleration) {
-  char AccelX[7];
-  char AccelY[7];
-  char AccelZ[7];
-  floatToString(Acceleration.x, AccelX, sizeof(AccelX), 3);
-   floatToString(Acceleration.y, AccelY, sizeof(AccelY), 3);
-    floatToString(Acceleration.z, AccelZ, sizeof(AccelZ), 3);
-return ("x: " <<  AccelX << " y: " << AccelY << " z: " << AccelZ);
+
+return ("x: " <<  Acceleration.x << " y: " << Acceleration.y << " z: " << Acceleration.z);
 }
 
 void setup() {
