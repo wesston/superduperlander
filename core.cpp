@@ -1,5 +1,7 @@
 
 #include <math.h>
+#include <EasyStringStream.h>
+//#include <stdlib.h>
 
 struct Accel3 {
 float x;
@@ -21,7 +23,7 @@ return ("x: " <<  Acceleration.x << " y: " << Acceleration.y << " z: " << Accele
 
 void setup() {
   // put your setup code here, to run once:
-Serial.print(AccelDataRetunr(HighestAccel));
+Serial.print(AccelDataReturn(HighestAccel));
 }
 
 void loop() {
