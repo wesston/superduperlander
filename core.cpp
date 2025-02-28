@@ -1,13 +1,16 @@
+
 //btw the accelerometer is called the ADXL345
 //accelerometer uses xzy not xyz
 #include <math.h>
 
+//#include <Adafruit_Sensor.h> 
 #include <Wire.h>
-#include <Adafruit_Sensor.h> 
-#include <Adafruit_ADXL345_U.h>
+#include <ADXL345.h>
 
 
 //#include <stdlib.h>
+
+ADXL345 accel(ADXL345_STD);
 
 struct Accel3 {
 float x{0.0};
@@ -32,10 +35,63 @@ float y{0.0};
 
 //this will be the highest acceleration recorded
 
-
-float accelMag(x, z, y)
+void SetupSensor()
 {
-return sqrt((Acceleration.x*Acceleration.x)+(Acceleration.z*Acceleration.z)+(Acceleration.y*Acceleration.y));
+ //  Wire.begin();
+
+  byte deviceID = accel.readDeviceID();
+  if (deviceID != 0) {
+    Serial.print("0x");
+    Serial.print(deviceID, HEX);
+    Serial.println("");
+  } else {
+    Serial.println("read device id: failed");
+    while(1) {
+      delay(100);
+    }
+  }
+
+  // Data Rate
+  // - ADXL345_RATE_3200HZ: 3200 Hz
+  // - ADXL345_RATE_1600HZ: 1600 Hz
+  // - ADXL345_RATE_800HZ:  800 Hz
+  // - ADXL345_RATE_400HZ:  400 Hz
+  // - ADXL345_RATE_200HZ:  200 Hz
+  // - ADXL345_RATE_100HZ:  100 Hz
+  // - ADXL345_RATE_50HZ:   50 Hz
+  // - ADXL345_RATE_25HZ:   25 Hz
+  // - ...
+  if (!accel.writeRate(ADXL345_RATE_200HZ)) {
+    Serial.println("write rate: failed / setup stopped");
+    while(1) {
+      delay(100);
+    }
+  }
+
+  // Data Range
+  // - ADXL345_RANGE_2G: +-2 g
+  // - ADXL345_RANGE_4G: +-4 g
+  // - ADXL345_RANGE_8G: +-8 g
+  // - ADXL345_RANGE_16G: +-16 g
+  if (!accel.writeRange(ADXL345_RANGE_16G)) {
+    Serial.println("write range: failed / setup stopped");
+    while(1) {
+      delay(100);
+    }
+  }
+
+  if (!accel.start()) {
+    Serial.println("start: failed / setup stopped");
+    while(1) {
+      delay(100);
+    }
+  }
+}
+
+
+float accelMag(float x, float z, float y)
+{
+return sqrt((x*x)+(z*z)+(y*y));
 }
 // this is for magnitude 
 
@@ -47,39 +103,43 @@ struct Accel3 HighestAccel(0.0, 0.0, 0.0);
 
 void CategorizeData(float X, float Z, float Y)
 {
-if (accelMag(HighestAccel.X, HighestAccel.z, HighestAccel.y) <= accelMag(X, Z, Y))
+if (accelMag(HighestAccel.x, HighestAccel.z, HighestAccel.y) <= accelMag(X, Z, Y))
 {
-HighestAccel.x = X
-HighestAccel.z = Z
-HighestAccel.Y = Y
+HighestAccel.x = X;
+HighestAccel.z = Z;
+HighestAccel.y = Y;
 //Iters += 1
 }
 }
 
-Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified();
+//Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified();
 void setup() {
 
  
  
   // put your setup code here, to run once:
   Serial.begin(9600);
+  Wire.begin();
   Serial.println(); // arduino likes to put a bunch of weird characters in the beginning of serial monitor
 
+  SetupSensor();
+
+/*
    if(!accel.begin())
    {
       Serial.println("No valid sensor found - waiting");
       while(1);
    }
-
+*/
   Serial.println(HighestAccel.toString());
-  Serial.println(accelMag(HighestAccel));
+  Serial.println(accelMag(HighestAccel.x, HighestAccel.z, HighestAccel.y));
 //Serial.print();
 }
 
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+/*
  sensors_event_t event; 
   accel.getEvent(&event);
 
@@ -87,5 +147,20 @@ void loop() {
 
    Serial.println(HighestAccel.toString());
   delay(150)
+*/
+ if (accel.update()) {
+    Serial.print(accel.getX());
+    Serial.print(",");
+    Serial.print(accel.getY());
+    Serial.print(",");
+    Serial.print(accel.getZ());
+    Serial.println("");
+  } else {
+    Serial.println("update failed");
+    while(1) {
+      delay(100);
+    }
+  }
+  delay(300);
 
 }
