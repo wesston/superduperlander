@@ -18,12 +18,17 @@ Serial.print(y);
 Serial.print(", ");
 Serial.println(z);
 }
+
+  String toString() {
+        return "acceleration: " + String(x) + ", " + String(y) + ", " + String(z);
+    }
+
+void SetValues()
 //output accel - no idea how to tostring in cpp
 //if you know lmk please
 };
-struct Accel3 HighestAccel = {0.0, 0.0, 0.0};
 
-struct 
+
 //this will be the highest acceleration recorded
 
 
@@ -37,17 +42,19 @@ return sqrt((Acceleration.x*Acceleration.x)+(Acceleration.y*Acceleration.y)+(Acc
 void AccelDataReturn(Accel3 Acceleration);
 
 void setup() {
+struct Accel3 HighestAccel = {0.0, 0.0, 0.0};
+
   // put your setup code here, to run once:
   Serial.begin(9600);
   Serial.println();
+  Serial.println(HighestAccel.toString());
 HighestAccel.AccelDataReturn();
 Serial.println(accelMag(HighestAccel));
+Serial.println("testing");
 //Serial.print();
 }
 
 
 void loop() {
   // put your main code here, to run repeatedly:
-
 }
-
