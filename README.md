@@ -14,3 +14,5 @@ https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf
 
 0.91in oled
 https://drive.google.com/file/d/14A_luFwqvZaKu-PKTfJdWmUZ4T4Wk65X/view
+
+OEL Display Module - QG-2832TLBFG02 ver 2
