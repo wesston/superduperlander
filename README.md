@@ -7,4 +7,10 @@ HS420361K-32 (the display): https://theokelo.co.ke/how-to-get-your-hs420361k-32-
 
 https://www.makerfocus.com/products/2pcs-i2c-oled-display-module-0-91-inch-i2c-ssd1306-oled-display-module-1
 
+technical sheets:
+
+adxl
+https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf
+
+0.91in oled
 https://drive.google.com/file/d/14A_luFwqvZaKu-PKTfJdWmUZ4T4Wk65X/view
