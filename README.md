@@ -16,3 +16,4 @@ https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf
 https://drive.google.com/file/d/14A_luFwqvZaKu-PKTfJdWmUZ4T4Wk65X/view
 
 OEL Display Module - QG-2832TLBFG02 ver 2
+https://docs.sunfounder.com/projects/umsk/en/latest/02_arduino/uno_lesson27_oled.html#uno-lesson27-oled
