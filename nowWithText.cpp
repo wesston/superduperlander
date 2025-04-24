@@ -37,6 +37,24 @@ float x{0.0};
 float z{0.0};
 float y{0.0};
 
+
+// vectors for acceleration
+
+
+
+  String toString() {
+        return "acceleration: " + String(x) + ", " + String(z) + ", " + String(y); //for outputting data
+    }
+
+
+
+    Accel3(float _x = 0.0, float _z = 0.0, float _y = 0.0)  // Constructor
+        : x(_x), z(_z), y(_y) {}
+
+};
+
+
+
 // 'Aqualog55', 128x32px
 const unsigned char bitmap_Aqualogo [] PROGMEM = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x18, 0x42, 0x10, 0x00, 0x00, 
@@ -74,20 +92,7 @@ const unsigned char bitmap_Aqualogo [] PROGMEM = {
 };
 
 
-// vectors for acceleration
 
-
-
-  String toString() {
-        return "acceleration: " + String(x) + ", " + String(z) + ", " + String(y); //for outputting data
-    }
-
-
-
-    Accel3(float _x = 0.0, float _z = 0.0, float _y = 0.0)  // Constructor
-        : x(_x), z(_z), y(_y) {}
-
-};
 void displaySensorDetails(void)
 {
   sensor_t sensor;
@@ -101,8 +106,12 @@ void displaySensorDetails(void)
   Serial.print  ("Resolution:   "); Serial.print(sensor.resolution); Serial.println(" m/s^2");  
   Serial.println("------------------------------------");
   Serial.println("");
-  delay(500);
+  display.println("Accel Sensor Found");
+  display.display();
+  delay(1500);
 }
+
+void StringOut(String )
 
 void displayDataRate(void)
 {
@@ -112,74 +121,91 @@ void displayDataRate(void)
     case ADXL345_DATARATE_3200_HZ:
       Serial.print  ("3200 "); 
         display.println("Data Rate: 3200");
+         display.display();
       break;
     case ADXL345_DATARATE_1600_HZ:
       Serial.print  ("1600 "); 
        display.println("Data Rate: 1600");
+        display.display();
       break;
     case ADXL345_DATARATE_800_HZ:
       Serial.print  ("800 "); 
        display.println("Data Rate: 800");
+        display.display();
       break;
     case ADXL345_DATARATE_400_HZ:
       Serial.print  ("400 "); 
        display.println("Data Rate: 400");
+        display.display();
       break;
     case ADXL345_DATARATE_200_HZ:
       Serial.print  ("200 "); 
        display.println("Data Rate: 200");
+        display.display();
       break;
     case ADXL345_DATARATE_100_HZ:
       Serial.print  ("100 "); 
        display.println("Data Rate: 100");
+        display.display();
       break;
     case ADXL345_DATARATE_50_HZ:
       Serial.print  ("50 "); 
        display.println("Data Rate: 50");
+        display.display();
       break;
     case ADXL345_DATARATE_25_HZ:
       Serial.print  ("25 "); 
        display.println("Data Rate: 25");
+        display.display();
       break;
     case ADXL345_DATARATE_12_5_HZ:
       Serial.print  ("12.5 "); 
        display.println("Data Rate: 12.5");
+        display.display();
       break;
     case ADXL345_DATARATE_6_25HZ:
       Serial.print  ("6.25 "); 
        display.println("Data Rate: 6.25");
+        display.display();
       break;
     case ADXL345_DATARATE_3_13_HZ:
       Serial.print  ("3.13 "); 
        display.println("Data Rate: 3.13");
+        display.display();
       break;
     case ADXL345_DATARATE_1_56_HZ:
       Serial.print  ("1.56 "); 
        display.println("Data Rate: 1.56");
+        display.display();
       break;
     case ADXL345_DATARATE_0_78_HZ:
       Serial.print  ("0.78 "); 
        display.println("Data Rate: 0.78");
+        display.display();
       break;
     case ADXL345_DATARATE_0_39_HZ:
       Serial.print  ("0.39 "); 
        display.println("Data Rate: 0.39");
+        display.display();
       break;
     case ADXL345_DATARATE_0_20_HZ:
       Serial.print  ("0.20 "); 
        display.println("Data Rate: 0.20");
+        display.display();
       break;
     case ADXL345_DATARATE_0_10_HZ:
       Serial.print  ("0.10 "); 
        display.println("Data Rate: 0.10");
+        display.display();
       break;
     default:
       Serial.print  ("???? "); 
        display.println("Data Rate: unknown");
+        display.display();
       break;
   }  
   Serial.println(" Hz");  
-  display.display();
+ 
 }
 
 void displayRange(void)
@@ -191,26 +217,31 @@ void displayRange(void)
     case ADXL345_RANGE_16_G:
       Serial.print  ("16 "); 
        display.println("Range: +/-16g");
+        display.display();
       break;
     case ADXL345_RANGE_8_G:
       Serial.print  ("8 "); 
         display.println("Range: +/-8g");
+         display.display();
       break;
     case ADXL345_RANGE_4_G:
       Serial.print  ("4 "); 
         display.println("Range: +/-4g");
+         display.display();
       break;
     case ADXL345_RANGE_2_G:
       Serial.print  ("2 "); 
         display.println("Range: +/-2g");
+         display.display();
       break;
     default:
       Serial.print  ("?? "); 
         display.println("Range: unkown");
+         display.display();
       break;
   }  
   Serial.println(" g");  
-  display.display();
+  //display.display();
 }
 
 
@@ -241,6 +272,12 @@ HighestAccel.y = Y;
 }
 }
 
+void clearReset()
+{
+   display.clearDisplay();
+ display.setCursor(0, 0);
+}
+
 //Adafruit_ADXL345_Unified accel = Adafruit_ADXL345_Unified();
 void setup() {
 
@@ -258,7 +295,7 @@ if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
       ;
   }
 
-   display.clearDisplay(); // Make sure the display is cleared
+    clearReset();
 
 display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
 
@@ -266,15 +303,16 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
   display.setTextColor(WHITE);
   display.display();
   delay(2000);
-  display.clearDisplay();
-   display.setCursor(0, 0);
+
+    clearReset();
+
   display.setTextSize(2);
   display.println("diagnostic time :)");
   display.display();
-  delay(3000);
-  display.clearDisplay();
- display.setCursor(0, 0);
+
+  clearReset();
    display.setTextSize(1);
+   /*
    if(!accel.begin())
    {
       Serial.println("No valid sensor found - failed");
@@ -282,35 +320,38 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
         display.display();
       while(1);
    }
- 
+ */
 
 
 
  accel.setRange(ADXL345_RANGE_16_G);
 
  displaySensorDetails();
-  
+
+   clearReset();
+
+  delay(500);
   /* Display additional settings (outside the scope of sensor_t) */
   displayDataRate();
   delay(3000);
-  display.clearDisplay();
-   display.setCursor(0, 0);
+
+    clearReset();
+
   displayRange();
   delay(3000);
-  display.clearDisplay();
-   display.setCursor(0, 0);
+
+   clearReset();
+
   display.println("diagnostics done..\n happy dropping!");
    display.display();
   delay(4500);
-  display.clearDisplay();
-   display.setCursor(0, 0);
+   clearReset();
   Serial.println(HighestAccel.toString());
   Serial.println(accelMag(HighestAccel.x, HighestAccel.z, HighestAccel.y));
   display.println("remember to reset \n between trials");
  display.display();
   delay(4500);
-  display.clearDisplay();
-   display.setCursor(0, 0);
+   clearReset();
 //Serial.print();
 }
 
@@ -324,8 +365,9 @@ void loop() {
   CategorizeData(event.acceleration.x, event.acceleration.z, event.acceleration.y);
 
    Serial.println(HighestAccel.toString());
-     display.clearDisplay();
-      display.setCursor(0, 0);
+
+     clearReset();
+
    display.println(HighestAccel.toString());
      display.display();
   delay(300);
