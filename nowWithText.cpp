@@ -43,7 +43,7 @@ float y{0.0};
 
 
   String toString() {
-        return "acceleration: " + String(x) + ", " + String(z) + ", " + String(y); //for outputting data
+        return "acceleration: \n " + String(x) + ", " + String(z) + ", " + String(y); //for outputting data
     }
 
 
@@ -111,8 +111,12 @@ void displaySensorDetails(void)
   delay(1500);
 }
 
-void StringOut(String )
-
+void StringOut(String toDisplay)
+{
+   display.println(toDisplay);
+         display.display();
+}
+/*
 void displayDataRate(void)
 {
   Serial.print  ("Data Rate:    "); 
@@ -120,88 +124,87 @@ void displayDataRate(void)
   {
     case ADXL345_DATARATE_3200_HZ:
       Serial.print  ("3200 "); 
-        display.println("Data Rate: 3200");
-         display.display();
+        StringOut("Data Rate: 3200");
+    
       break;
     case ADXL345_DATARATE_1600_HZ:
       Serial.print  ("1600 "); 
-       display.println("Data Rate: 1600");
-        display.display();
+        StringOut("Data Rate: 1600");
+    
       break;
     case ADXL345_DATARATE_800_HZ:
       Serial.print  ("800 "); 
-       display.println("Data Rate: 800");
-        display.display();
+       StringOut("Data Rate: 800");
+ 
       break;
     case ADXL345_DATARATE_400_HZ:
       Serial.print  ("400 "); 
-       display.println("Data Rate: 400");
-        display.display();
+       StringOut("Data Rate: 400");
+  
       break;
     case ADXL345_DATARATE_200_HZ:
       Serial.print  ("200 "); 
-       display.println("Data Rate: 200");
-        display.display();
+       StringOut("Data Rate: 200");
+      
       break;
     case ADXL345_DATARATE_100_HZ:
       Serial.print  ("100 "); 
-       display.println("Data Rate: 100");
-        display.display();
+       StringOut("Data Rate: 100");
+    
       break;
     case ADXL345_DATARATE_50_HZ:
       Serial.print  ("50 "); 
-       display.println("Data Rate: 50");
-        display.display();
+       StringOut("Data Rate: 50");
+    
       break;
     case ADXL345_DATARATE_25_HZ:
       Serial.print  ("25 "); 
-       display.println("Data Rate: 25");
-        display.display();
+       StringOut("Data Rate: 25");
+       
       break;
     case ADXL345_DATARATE_12_5_HZ:
       Serial.print  ("12.5 "); 
-       display.println("Data Rate: 12.5");
-        display.display();
+       StringOut("Data Rate: 12.5");
+      
       break;
     case ADXL345_DATARATE_6_25HZ:
       Serial.print  ("6.25 "); 
-       display.println("Data Rate: 6.25");
-        display.display();
+        StringOut("Data Rate: 6.25");
+     
       break;
     case ADXL345_DATARATE_3_13_HZ:
       Serial.print  ("3.13 "); 
-       display.println("Data Rate: 3.13");
-        display.display();
+       StringOut("Data Rate: 3.13");
+      
       break;
     case ADXL345_DATARATE_1_56_HZ:
       Serial.print  ("1.56 "); 
-       display.println("Data Rate: 1.56");
-        display.display();
+       StringOut("Data Rate: 1.56");
+      
       break;
     case ADXL345_DATARATE_0_78_HZ:
       Serial.print  ("0.78 "); 
-       display.println("Data Rate: 0.78");
-        display.display();
+       StringOut("Data Rate: 0.78");
+      
       break;
     case ADXL345_DATARATE_0_39_HZ:
       Serial.print  ("0.39 "); 
-       display.println("Data Rate: 0.39");
-        display.display();
+       StringOut("Data Rate: 0.39");
+      
       break;
     case ADXL345_DATARATE_0_20_HZ:
       Serial.print  ("0.20 "); 
-       display.println("Data Rate: 0.20");
-        display.display();
+      StringOut("Data Rate: 0.20");
+        
       break;
     case ADXL345_DATARATE_0_10_HZ:
       Serial.print  ("0.10 "); 
-       display.println("Data Rate: 0.10");
-        display.display();
+       StringOut("Data Rate: 0.10");
+      
       break;
     default:
       Serial.print  ("???? "); 
-       display.println("Data Rate: unknown");
-        display.display();
+      StringOut("Data Rate: unknown");
       break;
   }  
   Serial.println(" Hz");  
@@ -216,34 +219,34 @@ void displayRange(void)
   {
     case ADXL345_RANGE_16_G:
       Serial.print  ("16 "); 
-       display.println("Range: +/-16g");
-        display.display();
+       StringOut("Range: +/-16g");
+     
       break;
     case ADXL345_RANGE_8_G:
       Serial.print  ("8 "); 
-        display.println("Range: +/-8g");
-         display.display();
+       StringOut("Range: +/-8g");
+     
       break;
     case ADXL345_RANGE_4_G:
       Serial.print  ("4 "); 
-        display.println("Range: +/-4g");
-         display.display();
+         StringOut("Range: +/-4g");
+        
       break;
     case ADXL345_RANGE_2_G:
       Serial.print  ("2 "); 
-        display.println("Range: +/-2g");
-         display.display();
+      StringOut("Range: +/-2g");
+        
       break;
     default:
       Serial.print  ("?? "); 
-        display.println("Range: unkown");
-         display.display();
+      StringOut("Range: unkown");
+       
       break;
   }  
   Serial.println(" g");  
   //display.display();
 }
-
+*/
 
 //this will be the highest acceleration recorded
 
@@ -309,7 +312,7 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
   display.setTextSize(2);
   display.println("diagnostic time :)");
   display.display();
-
+delay(3500);
   clearReset();
    display.setTextSize(1);
    /*
@@ -322,16 +325,16 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
    }
  */
 
-
-
  accel.setRange(ADXL345_RANGE_16_G);
 
  displaySensorDetails();
 
    clearReset();
 
-  delay(500);
+  delay(2500);
+ 
   /* Display additional settings (outside the scope of sensor_t) */
+  /*
   displayDataRate();
   delay(3000);
 
@@ -341,7 +344,7 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
   delay(3000);
 
    clearReset();
-
+*/
   display.println("diagnostics done..\n happy dropping!");
    display.display();
   delay(4500);
@@ -352,6 +355,7 @@ display.drawBitmap(0, 0, bitmap_Aqualogo, 128, 32, WHITE);
  display.display();
   delay(4500);
    clearReset();
+    StringOut(HighestAccel.toString());
 //Serial.print();
 }
 
@@ -364,12 +368,13 @@ void loop() {
 
   CategorizeData(event.acceleration.x, event.acceleration.z, event.acceleration.y);
 
-   Serial.println(HighestAccel.toString());
+  // Serial.println(HighestAccel.toString());
 
      clearReset();
 
-   display.println(HighestAccel.toString());
-     display.display();
+   //display.println();
+   StringOut(HighestAccel.toString());
+    
   delay(300);
 
 }
